@@ -40,13 +40,15 @@ ResultSet resultSet = null;
 </tr>
 <tr bgcolor="#A52A2A">
 <td><b>Critical</b></td>
-
+<td><b>High</b></td>
+<td><b>Medium</b></td>
+<td><b>low</b></td>
 </tr>
 <%
 try{ 
 connection = DriverManager.getConnection(jdbcUrl,userName,password);
 statement=connection.createStatement();
-String sql ="SELECT * FROM critical";
+String sql ="SELECT * FROM Result";
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
@@ -54,7 +56,9 @@ while(resultSet.next()){
 <tr bgcolor="#DEB887">
 
 <td><%=resultSet.getString("critical") %></td>
-
+<td><%=resultSet.getString("High") %></td>
+<td><%=resultSet.getString("medium") %></td>
+<td><%=resultSet.getString("low") %></td>
 
 </tr>
 

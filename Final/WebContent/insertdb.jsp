@@ -9,14 +9,15 @@
 <body>
 	
 	
-
+<a href="retrieve.jsp">Results</a>
 
 
 <%@ page import="java.sql.*"  %>
 <%
 int x = Integer.parseInt(request.getParameter("sample"));
-
-out.println(x);
+int y = Integer.parseInt(request.getParameter("sample1"));
+int z = Integer.parseInt(request.getParameter("sample2"));
+int t = Integer.parseInt(request.getParameter("sample3"));
   // Read RDS connection information from the environment
   String dbName = "score";
   String userName = "outsecure";
@@ -50,15 +51,15 @@ out.println(x);
     // Create a table and write two rows
     setupStatement = conn.createStatement();
     //String createTable = "CREATE TABLE Beanstalk (Resource char(50));";
-    String insertRow1 = "INSERT INTO Beanstalk (Resource) VALUES ('EC2 Instance8');";
-    String insertRow2 = "INSERT INTO Beanstalk (Resource) VALUES ('RDS Instance9');";
-    String insertRow3 = "Insert into critical values('"+x+"');";
+    //String insertRow1 = "INSERT INTO Beanstalk (Resource) VALUES ('EC2 Instance8');";
+    //String insertRow2 = "INSERT INTO Beanstalk (Resource) VALUES ('RDS Instance9');";
+    String insertRow3 = "Insert into Result values('"+x+"','"+y+"','"+z+"','"+t+"');";
     
     //setupStatement.addBatch(createTable);
-    setupStatement.addBatch(insertRow1);
-    setupStatement.addBatch(insertRow2);
+   // setupStatement.addBatch(insertRow1);
+   //setupStatement.addBatch(insertRow2);
     setupStatement.addBatch(insertRow3);
-    out.println("data inserted");
+    
     setupStatement.executeBatch();
     setupStatement.close();
     
